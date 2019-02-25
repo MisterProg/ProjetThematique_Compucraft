@@ -1,0 +1,132 @@
+/* General info */
+body {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
+    height: 100%;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Description */
+
+.Description {
+    height: 100%;
+    padding: 100px 100px 200px 100px;
+    /*padding-top: 100px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 200px;*/
+}
+
+.Description h1 {
+    font-size: 30px
+}
+
+.img-responsive {
+    height:350px;
+}
+
+/* Coté droit, parametres globaux */
+
+.RightSide {
+    background: #2d449a; /* Old browsers */
+    background: -moz-linear-gradient(top, #2d449a 0%, #21223e 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #2d449a 0%,#21223e 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #2d449a 0%,#21223e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2d449a', endColorstr='#21223e',GradientType=0 ); /* IE6-9 */
+    clear: initial;
+}
+
+/* Connexion */
+
+.row {
+    display: table-row;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.clear {
+    width: 1%;
+    display: table-cell;
+}
+
+.welcome {
+    margin-top: 100px;
+    color: white;
+    text-align: center;
+}
+
+.welcome h2 {
+    font-size: 20px;
+}
+
+.row .no-float {
+    display: table-cell;   
+    float: inherit;
+}
+
+.input-group {
+    width: 100%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.inputText {
+    background-color: transparent;
+    border-color: transparent;
+    border-bottom: 1px solid #CCC;   
+}
+
+.validationButton {
+    background-color: #2D449A;
+    border-color: transparent;
+}
+
+.option {   
+    display: contents; 
+}
+
+.checkbox {
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;   
+    padding-left: 20px; 
+    color: white;
+}
+
+.return {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.forgotPassword {
+    text-align: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-right: 0;
+}
+
+/* Inscription */
+.nameFirstname {
+    display: block;
+}
+
+.organismePrive {
+    color: white;
+}
+
+.org, .pri {
+    background-color: blue;
+}
+
+
+
+
