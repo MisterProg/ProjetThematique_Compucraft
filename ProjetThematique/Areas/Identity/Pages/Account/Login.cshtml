@@ -1,0 +1,85 @@
+﻿@page
+@model LoginModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Log in";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Test</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/accueil.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/accueil.min.css" asp-append-version="true" />
+    </environment>
+</head>
+
+<body>
+    <div class="row">
+        <div class="Description col-md-9 no-float">
+            <partial name="~/Pages/Accueil/Description.cshtml" />
+        </div>
+
+        <div class="clearfix RightSide col-md-3 no-float">
+            <form method="post">
+                <!-- Message -->
+                <div class="welcome">
+                    <h1>Content de vous revoir !</h1>
+                    <h2>S'il vous plait, connectez-vous à votre compte</h2>
+                </div>
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="textbox input-group mb-3 form-group">
+                    <input asp-for="Input.Email" class="form-control inputText" placeholder="Nom utilisateur" aria-label="Nom utilisateur" aria-describedby="basic-addon1" />
+                    <span asp-validation-for="Input.Email" class="text-danger underline"></span>
+                </div>
+                <div class="textbox input-group mb-3 form-group">
+                    <input asp-for="Input.Password" class="form-control inputText" placeholder="Mot de passe" aria-label="Mot de passe" aria-describedby="basic-addon1" />
+                    <span asp-validation-for="Input.Password" class="text-danger underline"></span>
+                </div>
+                <div class="form-group option row justify-content-between">
+                    <div class="checkbox col-md-6">
+                        <label asp-for="Input.RememberMe">
+                            <input asp-for="Input.RememberMe" aria-label="Case à cocher pour l'option suivante" />
+                            Se souvenir de moi
+                        </label>
+                    </div>
+                    <div class="form-group forgotPassword col-md-6">
+                        <p>
+                            <a asp-page="./ForgotPassword" class="text-white">Mot de passe oublié ?</a>
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default validationButton btn-primary btn-lg btn-block">Connexion</button>
+                </div>
+
+                <div class="return">
+                    <p>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-white">Pas encore membre ? Cliquez-ici !</a>
+                    </p>
+                </div>
+                
+            </form>
+        </div>   
+ 
+</body>
+</html>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
