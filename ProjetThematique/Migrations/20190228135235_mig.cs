@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ProjetThematique.Data.Migrations
+namespace ProjetThematique.Migrations
 {
-    public partial class ProjetThematique : Migration
+    public partial class mig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

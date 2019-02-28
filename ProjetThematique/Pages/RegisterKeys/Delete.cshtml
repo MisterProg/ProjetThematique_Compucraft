@@ -1,0 +1,34 @@
+﻿@page
+@model ProjetThematique.Pages.RegisterKeys.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>RegisterKey</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RegisterKey.ApplicationUserID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RegisterKey.ApplicationUserID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RegisterKey.Key)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RegisterKey.Key)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="RegisterKey.ID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

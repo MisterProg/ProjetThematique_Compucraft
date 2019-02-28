@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using ProjetThematique.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProjetThematique.Models;
 
 namespace ProjetThematique
 {
@@ -37,15 +38,57 @@ namespace ProjetThematique
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+
+            services.AddDefaultIdentity<ApplicationUser>().AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddScoped<RoleManager<IdentityRole>>();
+            services.AddScoped<UserManager<ApplicationUser>>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
+        private async Task CreateUserRoles(IServiceProvider serviceProvider)
+        {
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+
+            //Adding Roles 
+            IdentityResult roleResult;
+            string[] roles = new string[] { "Admin", "Medecin", "Responsable" };
+            foreach (var role in roles)
+            {
+                if (!await RoleManager.RoleExistsAsync(role))
+                {
+                    //create the roles and seed them to the database  
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole(role));
+                }
+            }
+
+            //Assign Admin role to the main User here we have given our newly loregistered login id for Admin management  
+            ApplicationUser user = await UserManager.FindByEmailAsync("fab.ounet.basset@gmail.com");
+            if(user is null)
+            {
+                user = new ApplicationUser
+                {
+                    UserName = "fabienbasset",
+                    Email = "fab.ounet.basset@gmail.com",
+                    Organism = false,
+                    OrganismName = "",
+                    FirstName = "Fabien",
+                    LastName = "BASSET",
+                    PhoneNumber = "06 70 67 39 78",
+                    Key = ""
+                };
+                await UserManager.CreateAsync(user, "Soleil123#");
+                await UserManager.AddToRoleAsync(user, "Admin");
+            }
+
+        }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider services)
         {
             if (env.IsDevelopment())
             {
@@ -65,6 +108,8 @@ namespace ProjetThematique
             app.UseAuthentication();
 
             app.UseMvc();
+
+            CreateUserRoles(services).Wait();
         }
     }
 }

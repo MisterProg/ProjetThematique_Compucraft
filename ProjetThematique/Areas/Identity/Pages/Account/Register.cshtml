@@ -1,36 +1,92 @@
 ﻿@page
 @model RegisterModel
 @{
+    Layout = null;
     ViewData["Title"] = "Register";
 }
 
-<h2>@ViewData["Title"]</h2>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/accueil.css">
+
+    <title>Compucraft - Inscription</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-sm-12 presentation vertical-center">
+                <div>
+                    <div id="logo"><img src="~/images/Logo.png" class="logo"></div><br><br>
+                    <h3>Bienvenue,</h3>
+
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut massa at nulla condimentum auctor. Vestibulum et elit enim. Integer id venenatis ante. Nulla feugiat tellus felis, non aliquam neque molestie sed. Curabitur faucibus arcu eget lobortis rutrum. Maecenas tristique consectetur erat in vestibulum. Fusce faucibus dolor leo, ut fringilla mauris gravida ac. In suscipit dictum lacinia. Phasellus quis dolor tortor. Praesent dolor nulla, porttitor vel posuere vehicula, fermentum nec arcu.
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" class="form-control" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            <div class="col-lg-4 col-sm-12 connexion vertical-center">
+                <div>
+                    <h3>Inscription</h3><br>
+                    Veuillez remplir les champs ci-dessous
+
+                    <form id="connexion" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <div class="nameFirstname row justify-content-between">
+                            <div class="firstname col-md-6">
+                                <input asp-for="Input.FirstName" type="text" class="inputText form-control" placeholder="Prénom" aria-label="Prenom">
+                            </div>
+                            <div class="name col-md-6">
+                                <input asp-for="Input.Name" type="text" class="inputText form-control" placeholder="Nom" aria-label="Nom">
+                            </div>
+                        </div>
+                        <input class="inputText form-control" asp-for="Input.Pseudo" type="text" placeholder="Nom d'utilisateur">
+                        <input class="inputText form-control" asp-for="Input.Email" type="text" placeholder="E-mail">
+                        <input class="inputText form-control" asp-for="Input.ConfirmEmail" type="text" placeholder="Confirmez E-mail">
+                        <input class="inputText form-control" asp-for="Input.Password" type="password" placeholder="Mot de passe">
+                        <input class="inputText form-control" asp-for="Input.ConfirmPassword" type="password" placeholder="Confirmez mot de passe"><br>
+                        <!-- Organisme/Privé-->
+                        <div class="input-group mb-3">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="org btn-choix btn">
+                                    <input asp-for="Input.Organism" type="radio" autocomplete="off" value="true" checked="checked"> Organisme
+                                </label>
+                                <label class="pri btn-choix btn">
+                                    <input asp-for="Input.Organism" type="radio" autocomplete="off" value="false"> Privé
+                                </label>
+                            </div>
+                            <input class="inputText form-control" asp-for="Input.OrganismName" type="text" placeholder="Nom Organisme ou Accompagnant">
+
+                            <!-- Clé inscription -->
+                            <div class="textbox input-group mb-3">
+                                <input asp-for="Input.Key" type="text" class="inputText form-control" placeholder="Clé d'inscription" aria-label="Clé d'inscription" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <label asp-for="Input.ConditionsAccepted"><input asp-for="Input.ConditionsAccepted" type="checkbox" id="condition"> J'accepte les conditions d'utilisations</label> - <a asp-page="./ForgotPassword">Mot de passe oublié</a>
+
+                        <input class="btn btn-default btn-primary btn-lg btn-block" type="submit" value="Inscription">
+                        <a asp-page="./Login">Déjà membre ? Connectez-vous en cliquant-ici !</a>
+                    </form>
+
+                    
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-default">Register</button>
-        </form>
+        </div>
     </div>
-</div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

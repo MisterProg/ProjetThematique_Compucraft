@@ -1,0 +1,40 @@
+﻿@page
+@model ProjetThematique.Pages.RegisterKeys.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>RegisterKey</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="RegisterKey.ID" />
+            <div class="form-group">
+                <label asp-for="RegisterKey.ApplicationUserID" class="control-label"></label>
+                <input asp-for="RegisterKey.ApplicationUserID" class="form-control" />
+                <span asp-validation-for="RegisterKey.ApplicationUserID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegisterKey.Key" class="control-label"></label>
+                <input asp-for="RegisterKey.Key" class="form-control" />
+                <span asp-validation-for="RegisterKey.Key" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
