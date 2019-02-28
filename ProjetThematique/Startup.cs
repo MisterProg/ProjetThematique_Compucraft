@@ -78,8 +78,7 @@ namespace ProjetThematique
                     OrganismName = "",
                     FirstName = "Fabien",
                     LastName = "BASSET",
-                    PhoneNumber = "06 70 67 39 78",
-                    Key = ""
+                    PhoneNumber = "06 70 67 39 78"
                 };
                 await UserManager.CreateAsync(user, "Soleil123#");
                 await UserManager.AddToRoleAsync(user, "Admin");

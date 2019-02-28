@@ -107,8 +107,7 @@ namespace ProjetThematique.Areas.Identity.Pages.Account
                     return Page();
                 }
                 var user = new ApplicationUser { UserName = Input.Pseudo, Email = Input.Email, Organism = Input.Organism,
-                                                OrganismName = Input.OrganismName, FirstName = Input.FirstName, LastName = Input.Name,
-                                                Key = Input.Key};
+                                                OrganismName = Input.OrganismName, FirstName = Input.FirstName, LastName = Input.Name};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
